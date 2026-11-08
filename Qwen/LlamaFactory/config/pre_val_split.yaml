@@ -1,0 +1,39 @@
+
+model_name_or_path: /root/autodl-tmp/HuggingFace_Model/Qwen3.5-4B
+adapter_name_or_path: ./saves/Qwen3.5-4B/train/2026-09-08-09-08
+trust_remote_code: true
+
+stage: sft
+do_train: false
+do_eval: true
+do_predict: true
+finetuning_type: lora
+predict_with_generate: true
+
+eval_dataset: Agricultural_val_dataset
+template: default
+cutoff_len: 1024
+max_samples: null
+preprocessing_num_workers: 4
+dataloader_num_workers: 2
+overwrite_cache: true
+
+output_dir: ./saves/Qwen3.5-4B/eval/2026-09-08-09-08
+logging_steps: 10
+overwrite_output_dir: true
+report_to: none
+save_only_model: false
+
+eval_strategy: epoch
+eval_steps: null
+per_device_eval_batch_size: 2
+bf16: true
+
+max_new_tokens: 1024
+top_p: 0.9
+temperature: 0.7
+do_sample: false
+num_beams: 1
+repetition_penalty: 1.0
+
+ddp_timeout: 180000000
